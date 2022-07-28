@@ -15,13 +15,19 @@ limitations under the License.*/
 package apijson.demo;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.util.Map;
 
 import javax.sql.DataSource;
 
+
 import apijson.Log;
 import apijson.boot.DemoApplication;
+import apijson.column.ColumnUtil;
 import apijson.framework.APIJSONSQLExecutor;
 import apijson.orm.SQLConfig;
+import com.alibaba.fastjson.JSONObject;
 
 
 /**SQL 执行器，支持连接池及多数据源
@@ -71,10 +77,10 @@ public class DemoSQLExecutor extends APIJSONSQLExecutor {
 
 	// 取消注释支持 !key 反选字段 和 字段名映射，需要先依赖插件 https://github.com/APIJSON/apijson-column
 	//	@Override
-	//	protected String getKey(SQLConfig config, ResultSet rs, ResultSetMetaData rsmd, int tablePosition, JSONObject table,
-	//			int columnIndex, Map<String, JSONObject> childMap) throws Exception {
-	//		return ColumnUtil.compatOutputKey(super.getKey(config, rs, rsmd, tablePosition, table, columnIndex, childMap), config.getTable(), config.getMethod());
-	//	}
+		protected String getKey(SQLConfig config, ResultSet rs, ResultSetMetaData rsmd, int tablePosition, JSONObject table,
+								int columnIndex, Map<String, JSONObject> childMap) throws Exception {
+			return ColumnUtil.compatOutputKey(super.getKey(config, rs, rsmd, tablePosition, table, columnIndex, childMap), config.getTable(), config.getMethod());
+		}
 	
 	// 不需要隐藏字段这个功能时，取消注释来提升性能
 	//	@Override

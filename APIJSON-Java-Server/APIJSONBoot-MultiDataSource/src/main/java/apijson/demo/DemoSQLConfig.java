@@ -51,8 +51,8 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	}
 
 	static {
-		DEFAULT_DATABASE = DATABASE_MYSQL;  //TODO 默认数据库类型，改成你自己的。TiDB, MariaDB, OceanBase 这类兼容 MySQL 的可当做 MySQL 使用
-		DEFAULT_SCHEMA = "sys";  //TODO 默认数据库名/模式，改成你自己的，默认情况是 MySQL: sys, PostgreSQL: sys, SQL Server: dbo, Oracle:
+		DEFAULT_DATABASE = DATABASE_MYSQL;  //默认数据库类型，改成你自己的。TiDB, MariaDB, OceanBase 这类兼容 MySQL 的可当做 MySQL 使用
+		DEFAULT_SCHEMA = "apijsontest";  //默认数据库名/模式，改成你自己的，默认情况是 MySQL: sys, PostgreSQL: sys, SQL Server: dbo, Oracle:
 
 		//表名和数据库不一致的，需要配置映射关系。只使用 APIJSONORM 时才需要；
 		//这个 Demo 用了 apijson-framework 且调用了 APIJSONApplication.init
@@ -143,23 +143,21 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	@Override
 	public String getDBVersion() {
 		if (isMySQL()) {
-			return "5.7.22"; //"8.0.11"; //TODO 改成你自己的 MySQL 或 PostgreSQL 数据库版本号 //MYSQL 8 和 7 使用的 JDBC 配置不一样
+			return "8.0.28"; //"8.0.11"; //改成你自己的 MySQL 或 PostgreSQL 数据库版本号 //MYSQL 8 和 7 使用的 JDBC 配置不一样
 		}
 		if (isPostgreSQL()) {
-			return "9.6.15"; //TODO 改成你自己的
+			return "9.6.15"; //改成你自己的
 		}
 		if (isSQLServer()) {
-			return "2016"; //TODO 改成你自己的
+			return "2016"; //改成你自己的
 		}
 		if (isOracle()) {
-			return "18c"; //TODO 改成你自己的
+			return "18c"; //改成你自己的
 		}
 		if (isDb2()) {
-			return "11.5"; //TODO 改成你自己的
+			return "11.5"; //改成你自己的
 		}
-		if (isTDengine()) {
-			return "2.6.0.8"; //TODO 改成你自己的
-		}
+
 		return null;
 	}
 
@@ -169,24 +167,21 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 		if (isMySQL()) {
 			// 这个是 MySQL 8.0 及以上，要加 userSSL=false  return "jdbc:mysql://localhost:3306?userSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8";
 			// 以下是 MySQL 5.7 及以下
-			return "jdbc:mysql://localhost:3306?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8"; //TODO 改成你自己的，TiDB 可以当成 MySQL 使用，默认端口为 4000
+			return "jdbc:mysql://localhost:3313/apijsontest?userSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8"; //改成你自己的，TiDB 可以当成 MySQL 使用，默认端口为 4000
 		}
 		if (isPostgreSQL()) {
-			return "jdbc:postgresql://localhost:5432/postgres?stringtype=unspecified"; //TODO 改成你自己的
+			return "jdbc:postgresql://localhost:5432/postgres?stringtype=unspecified"; //改成你自己的
 		}
 		if (isSQLServer()) {
-			return "jdbc:jtds:sqlserver://localhost:1433/pubs;instance=SQLEXPRESS"; //TODO 改成你自己的
+			return "jdbc:jtds:sqlserver://localhost:1433/pubs;instance=SQLEXPRESS"; //改成你自己的
 		}
 		if (isOracle()) {
-			return "jdbc:oracle:thin:@localhost:1521:orcl"; //TODO 改成你自己的
+			return "jdbc:oracle:thin:@localhost:1521:orcl"; //改成你自己的
 		}
 		if (isDb2()) {
-			return "jdbc:db2://localhost:50000/BLUDB"; //TODO 改成你自己的
+			return "jdbc:db2://localhost:50000/BLUDB"; //改成你自己的
 		}
-		if (isTDengine()) {
-			//   return "jdbc:TAOS://localhost:6030"; //TODO 改成你自己的
-			return "jdbc:TAOS-RS://localhost:6041"; //TODO 改成你自己的
-		}
+
 		return null;
 	}
 
@@ -194,23 +189,21 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	@Override
 	public String getDBAccount() {
 		if (isMySQL()) {
-			return "root";  //TODO 改成你自己的
+			return "root";  //改成你自己的
 		}
 		if (isPostgreSQL()) {
-			return "postgres";  //TODO 改成你自己的
+			return "postgres";  //改成你自己的
 		}
 		if (isSQLServer()) {
-			return "sa";  //TODO 改成你自己的
+			return "sa";  //改成你自己的
 		}
 		if (isOracle()) {
-			return "scott";  //TODO 改成你自己的
+			return "scott";  //改成你自己的
 		}
 		if (isDb2()) {
-			return "db2admin"; //TODO 改成你自己的
+			return "db2admin"; //改成你自己的
 		}
-		if (isTDengine()) {
-			return "root"; //TODO 改成你自己的
-		}
+
 		return null;
 	}
 
@@ -218,23 +211,21 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	@Override
 	public String getDBPassword() {
 		if (isMySQL()) {
-			return "apijson";  //TODO 改成你自己的，TiDB 可以当成 MySQL 使用， 默认密码为空字符串 ""
+			return "root";  //改成你自己的，TiDB 可以当成 MySQL 使用， 默认密码为空字符串 ""
 		}
 		if (isPostgreSQL()) {
-			return null;  //TODO 改成你自己的
+			return null;  //改成你自己的
 		}
 		if (isSQLServer()) {
-			return "apijson@123";  //TODO 改成你自己的
+			return "apijson@123";  //改成你自己的
 		}
 		if (isOracle()) {
-			return "tiger";  //TODO 改成你自己的
+			return "tiger";  //改成你自己的
 		}
 		if (isDb2()) {
-			return "123"; //TODO 改成你自己的
+			return "123"; //改成你自己的
 		}
-		if (isTDengine()) {
-			return "taosdata"; //TODO 改成你自己的
-		}
+
 		return null;
 	}
 

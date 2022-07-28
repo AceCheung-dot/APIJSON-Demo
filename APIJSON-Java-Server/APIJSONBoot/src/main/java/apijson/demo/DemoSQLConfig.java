@@ -51,8 +51,8 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	}
 
 	static {
-		DEFAULT_DATABASE = DATABASE_MYSQL;  //TODO 默认数据库类型，改成你自己的。TiDB, MariaDB, OceanBase 这类兼容 MySQL 的可当做 MySQL 使用
-		DEFAULT_SCHEMA = "sys";  //TODO 默认数据库名/模式，改成你自己的，默认情况是 MySQL: sys, PostgreSQL: public, SQL Server: dbo, Oracle: 
+		DEFAULT_DATABASE = DATABASE_MYSQL;  // 默认数据库类型，改成你自己的。TiDB, MariaDB, OceanBase 这类兼容 MySQL 的可当做 MySQL 使用
+		DEFAULT_SCHEMA = "apijsontest";  // 默认数据库名/模式，改成你自己的，默认情况是 MySQL: sys, PostgreSQL: public, SQL Server: dbo, Oracle:
 
 		//表名和数据库不一致的，需要配置映射关系。只使用 APIJSONORM 时才需要；
 		//这个 Demo 用了 apijson-framework 且调用了 APIJSONApplication.init
@@ -148,19 +148,19 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	@Override
 	public String getDBVersion() {
 		if (isMySQL()) {
-			return "5.7.22"; //"8.0.11"; //TODO 改成你自己的 MySQL 或 PostgreSQL 数据库版本号 //MYSQL 8 和 7 使用的 JDBC 配置不一样
+			return "8.0.28"; //"8.0.11"; //改成你自己的 MySQL 或 PostgreSQL 数据库版本号 //MYSQL 8 和 7 使用的 JDBC 配置不一样
 		}
 		if (isPostgreSQL()) {
-			return "9.6.15"; //TODO 改成你自己的
+			return "9.6.15"; // 改成你自己的
 		}
 		if (isSQLServer()) {
-			return "2016"; //TODO 改成你自己的
+			return "2016"; //改成你自己的
 		}
 		if (isOracle()) {
-			return "18c"; //TODO 改成你自己的
+			return "18c"; //改成你自己的
 		}
 		if (isDb2()) {
-			return "11.5"; //TODO 改成你自己的
+			return "11.5"; //改成你自己的
 		}
 		return null;
 	}
@@ -170,20 +170,20 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	public String getDBUri() {
 		if (isMySQL()) {
 			// 这个是 MySQL 8.0 及以上，要加 userSSL=false  return "jdbc:mysql://localhost:3306?userSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8";
-			// 以下是 MySQL 5.7 及以下
-			return "jdbc:mysql://localhost:3306?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8"; //TODO 改成你自己的，TiDB 可以当成 MySQL 使用，默认端口为 4000
+			// 以下是 MySQL 5.7 及以下 "jdbc:mysql://localhost:3306?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8"
+			return "jdbc:mysql://localhost:3313/apijsontest?userSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8"; // 改成你自己的，TiDB 可以当成 MySQL 使用，默认端口为 4000
 		}
 		if (isPostgreSQL()) {
-			return "jdbc:postgresql://localhost:5432/postgres?stringtype=unspecified"; //TODO 改成你自己的
+			return "jdbc:postgresql://localhost:5432/postgres?stringtype=unspecified"; // 改成你自己的
 		}
 		if (isSQLServer()) {
-			return "jdbc:jtds:sqlserver://localhost:1433/pubs;instance=SQLEXPRESS"; //TODO 改成你自己的
+			return "jdbc:jtds:sqlserver://localhost:1433/pubs;instance=SQLEXPRESS"; //改成你自己的
 		}
 		if (isOracle()) {
-			return "jdbc:oracle:thin:@localhost:1521:orcl"; //TODO 改成你自己的
+			return "jdbc:oracle:thin:@localhost:1521:orcl"; // 改成你自己的
 		}
 		if (isDb2()) {
-			return "jdbc:db2://localhost:50000/BLUDB"; //TODO 改成你自己的
+			return "jdbc:db2://localhost:50000/BLUDB"; //改成你自己的
 		}
 		return null;
 	}
@@ -192,19 +192,19 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	@Override
 	public String getDBAccount() {
 		if (isMySQL()) {
-			return "root";  //TODO 改成你自己的
+			return "root";  //改成你自己的
 		}
 		if (isPostgreSQL()) {
-			return "postgres";  //TODO 改成你自己的
+			return "postgres";  //改成你自己的
 		}
 		if (isSQLServer()) {
-			return "sa";  //TODO 改成你自己的
+			return "sa";  //改成你自己的
 		}
 		if (isOracle()) {
-			return "scott";  //TODO 改成你自己的
+			return "scott";  //改成你自己的
 		}
 		if (isDb2()) {
-			return "db2admin"; //TODO 改成你自己的
+			return "db2admin"; //改成你自己的
 		}
 		return null;
 	}
@@ -213,16 +213,16 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	@Override
 	public String getDBPassword() {
 		if (isMySQL()) {
-			return "apijson";  //TODO 改成你自己的，TiDB 可以当成 MySQL 使用， 默认密码为空字符串 ""
+			return "root";  //改成你自己的，TiDB 可以当成 MySQL 使用， 默认密码为空字符串 ""
 		}
 		if (isPostgreSQL()) {
-			return null;  //TODO 改成你自己的
+			return null;  //改成你自己的
 		}
 		if (isSQLServer()) {
-			return "apijson@123";  //TODO 改成你自己的
+			return "apijson@123";  //改成你自己的
 		}
 		if (isOracle()) {
-			return "tiger";  //TODO 改成你自己的
+			return "tiger";  //改成你自己的
 		}
 		if (isDb2()) {
 			return "123"; //TODO 改成你自己的
@@ -231,14 +231,14 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 	}
 
 	//取消注释后，默认的 APIJSON 配置表会由业务表所在 数据库类型 database 和 数据库模式 schema 改为自定义的
-	//	@Override
-	//	public String getConfigDatabase() {
-	//		return DATABASE_POSTGRESQL;
-	//	}
-	//	@Override
-	//	public String getConfigSchema() {
-	//		return "apijson";
-	//	}
+		@Override
+		public String getConfigDatabase() {
+			return DATABASE_MYSQL;
+		}
+		@Override
+		public String getConfigSchema() {
+			return "apijsontest";
+		}
 
 	//取消注释后，默认的数据库类型会由 MySQL 改为 PostgreSQL
 	//	@Override
@@ -272,13 +272,13 @@ public class DemoSQLConfig extends APIJSONSQLConfig {
 
 	// 取消注释支持 !key 反选字段 和 字段名映射，需要先依赖插件 https://github.com/APIJSON/apijson-column
 	//	@Override
-	//	public AbstractSQLConfig setColumn(List<String> column) {
-	//		return super.setColumn(ColumnUtil.compatInputColumn(column, getTable(), getMethod()));
-	//	}
-	//	@Override
-	//	public String getKey(String key) {
-	//		return super.getKey(ColumnUtil.compatInputKey(key, getTable(), getMethod()));
-	//	}
+		public AbstractSQLConfig setColumn(List<String> column) {
+			return super.setColumn(ColumnUtil.compatInputColumn(column, getTable(), getMethod()));
+		}
+		@Override
+		public String getKey(String key) {
+			return super.getKey(ColumnUtil.compatInputKey(key, getTable(), getMethod()));
+		}
 
 	// 取消注释来兼容 Oracle DATETIME, TIMESTAMP 等日期时间类型的值来写库
 	//	public Object getValue(@NotNull Object value) {
